@@ -10,9 +10,27 @@ st.title('Algebraic equation solver ')
 def quadratic(x):
     return a * x ** 2 + b * x + c
 
-option = st.selectbox('Choose the type of equation to solve:',('Quadratic','Cubic','Linear '))
+def linear(x):
+    return a*x + b
 
-if option == 'Quadratic':
+option = st.selectbox('Choose the type of equation to solve:',('Quadratic','Cubic','Linear'))
+
+if option == 'Linear':
+    st.header('Solve Linear Equation')
+    st.write('Equation Format: ax + b = 0')
+
+    a = st.number_input('Enter the coefficient a:', value=1.0)
+    b = st.number_input('Enter the coefficient b:', value=0.0)
+    if st.button("Solve the linear equation"):
+        if a == 0:
+            st.write("This is not a linear equation")
+        else:
+            roots = fsolve(linear,[0])
+            st.write('The root of the equation is: ',roots,)
+
+
+
+elif option == 'Quadratic':
     st.header('Solve Quadratic equation ')
     st.write('Equation Format: ax² + bx + c = 0')
 
